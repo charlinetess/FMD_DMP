@@ -109,7 +109,7 @@ randomstartingpos=0; # 1 if random starting position at every trial, 0 if every 
 
 # Define number of rats, number of days and numbers of trials per day
 numberofdays=10; # every day goal location changes 
-numberofrats=2; # number of independant runs 
+numberofrats=20; # number of independant runs 
 numberoftrials=4; # number of trials per goal location 
 
 

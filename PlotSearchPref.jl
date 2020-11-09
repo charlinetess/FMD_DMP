@@ -87,6 +87,10 @@ plt.rc("ytick", labelsize=SMALL_SIZE)    # fontsize of the tick labels
 plt.rc("legend", fontsize=SMALL_SIZE)    # legend fontsize
 plt.rc("figure", titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
+uppererror = [std([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ]./sqrt(numberofrats); 
+lowererror = [std([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ]./sqrt(numberofrats); 
+errs=[lowererror,uppererror];
+
 bar(1:1:length(parameters[:indexprobedays]),[mean([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ],width=0.5,yerr=errs,color=[60/255,179/255,113/255],align="center",alpha=0.4)
 ax[:axes][:get_xaxis]()[:set_ticks]([])
 #xlabel=["day $(indexprobedays[1])","day $(indexprobedays[2])","day $(indexprobedays[3])"]
