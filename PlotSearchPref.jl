@@ -1,5 +1,10 @@
 # This file loads the date produced from the file DMPCoordSearchPref and generates a plot of the search preference on all search rpef days and a plot of all platform positions 
-
+# 	
+using PyPlot
+using LinearAlgebra
+using Statistics
+using JLD2
+using FileIO
 # 	
 # 	                                     ,,             ,,
 # 	`7MMF'                             `7MM           `7MM           mm
@@ -87,8 +92,8 @@ plt.rc("ytick", labelsize=SMALL_SIZE)    # fontsize of the tick labels
 plt.rc("legend", fontsize=SMALL_SIZE)    # legend fontsize
 plt.rc("figure", titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
-uppererror = [std([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ]./sqrt(numberofrats); 
-lowererror = [std([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ]./sqrt(numberofrats); 
+uppererror = [std([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ]./sqrt(featuresexperiment[:numberofrats]); 
+lowererror = [std([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ]./sqrt(featuresexperiment[:numberofrats]); 
 errs=[lowererror,uppererror];
 
 bar(1:1:length(parameters[:indexprobedays]),[mean([data[n][k].day[2].SearchPref*100 for n in 1:featuresexperiment[:numberofrats]]) for k in parameters[:indexprobedays] ],width=0.5,yerr=errs,color=[60/255,179/255,113/255],align="center",alpha=0.4)
@@ -108,7 +113,7 @@ ax.get_yaxis().tick_left()
 legend()
 title("%time spent in the correct zone")
 
-# show()
+show()
 
 # 	
 # 	                                     ,...,,
